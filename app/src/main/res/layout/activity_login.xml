@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/menufondoslid"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+<FrameLayout
+    android:background="#99007E33"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/favicon"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+    <EditText
+        android:paddingLeft="10dp"
+        android:id="@+id/txtuserlogin"
+        android:drawableLeft="@drawable/icons8_person_48"
+        android:layout_marginTop="30dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:textSize="15sp"
+        android:hint="Usuario"
+        android:layout_marginBottom="10dp"
+
+        android:inputType="text"
+        android:layout_gravity="center"
+        android:background="@drawable/roundedittext"
+        android:layout_width="200dp"
+        android:layout_height="30dp" />
+  <EditText
+      android:paddingLeft="10dp"
+      android:id="@+id/txtcontralogin"
+      android:drawableLeft="@drawable/icons8_lock_48"
+      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+      android:textSize="15sp"
+      android:hint="Contraseña"
+      android:layout_marginBottom="10dp"
+      android:background="@drawable/roundedittext"
+      android:inputType="textPassword"
+      android:layout_width="200dp"
+      android:layout_height="30dp" />
+
+    <Spinner
+        android:id="@+id/spinneempresas"
+        android:theme="@style/WhiteFont"
+        android:textAlignment="center"
+        android:background="@drawable/roundedittext"
+        android:layout_marginBottom="40dp"
+        android:layout_width="200dp"
+        android:layout_height="30dp">
+    </Spinner>
+    <Button
+        android:id="@+id/ButtonLogin"
+        android:text="Ingresar"
+        android:textSize="13sp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@drawable/roundedbutton"
+        android:layout_width="200dp"
+        android:layout_height="35dp" />
+
+
+</LinearLayout>
+
+
+</FrameLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressLogin"
+        android:visibility="invisible"
+        android:layout_gravity="bottom|center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/radiusvender"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <EditText
+            android:enabled="false"
+            android:textColor="@color/cardview_light_background"
+            android:background="@color/colorPrimary"
+            android:textAlignment="center"
+            android:text="Vender"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:enabled="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="17sp"
+                android:text="Cliente     : "
+                android:layout_width="90dp"
+                android:layout_height="30dp" />
+            <ImageView
+                android:tint="#555"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icons8_reception_filled_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Spinner
+                android:id="@+id/cbclientes"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+            </Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:enabled="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="17sp"
+                android:text="Cantidad : "
+                android:layout_width="90dp"
+                android:layout_height="30dp" />
+            <EditText
+                android:paddingLeft="10dp"
+                android:drawableTint="#555"
+                android:drawableLeft="@drawable/icons8_person_48"
+                android:id="@+id/cantidadavender"
+                android:inputType="number"
+                android:textSize="19sp"
+                android:hint="0"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:enabled="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="17sp"
+                android:text="Clave        : "
+                android:layout_width="90dp"
+                android:layout_height="30dp" />
+            <EditText
+                android:paddingLeft="10dp"
+                android:drawableLeft="@drawable/icons8_lock_48"
+                android:drawableTint="#555"
+                android:id="@+id/claveventa"
+                android:inputType="textPassword"
+                android:textSize="19sp"
+                android:hint="Contraseña"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonVender"
+            android:textColor="@color/cardview_light_background"
+            android:text="Confirmar"
+            android:layout_gravity="center"
+            android:background="@drawable/roundedventabutton"
+            android:layout_width="200dp"
+            android:layout_height="35dp" />
+
+
+    </LinearLayout>
+    <ProgressBar
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:id="@+id/progressbarventa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</android.support.design.widget.CoordinatorLayout>

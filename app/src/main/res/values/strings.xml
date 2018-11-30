@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GrowingTools</string>
+    <string name="Open">Abrir</string>
+    <string name="Close">Cerrar</string>
+</resources>
