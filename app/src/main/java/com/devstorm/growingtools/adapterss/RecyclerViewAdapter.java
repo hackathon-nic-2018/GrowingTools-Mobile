@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -40,6 +41,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
    //Construir el card
     private int Resourcer= 0;
     private List<RecyclerViewModel> list;
+    AlertDialog dialog;
 
     public RecyclerViewAdapter(int resourcer, List<RecyclerViewModel> list, Activity activity) {
         Resourcer = resourcer;
@@ -87,12 +89,13 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
             public void onClick(View v) {
 
                 //Log.w("RECYCLERMAX", (String.valueOf(tv.getText())));
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(activity);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(activity);
                 View view = activity.getLayoutInflater().inflate(R.layout.sellmodellayout,null);
                 //Llenando los elementos necesarios
                 spinner = (Spinner) view.findViewById(R.id.cbclientes);
                 progressBar = (ProgressBar) view.findViewById(R.id.progressbarventa);
                 cantidad = (TextView) view.findViewById(R.id.cantidadavender);
+                contraseñaventa = (EditText) view.findViewById(R.id.claveventa);
                 confirmarventa = (Button) view.findViewById(R.id.buttonVender);
 
                 cantidad.addTextChangedListener(new TextWatcher() {
@@ -122,6 +125,13 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
 
                     }
                 });
+                progressBar.setVisibility(View.VISIBLE);
+                clientes = new ArrayList<String>();
+                GetClientes();
+
+                mBuilder.setView(view);
+                dialog = mBuilder.create();
+                dialog.show();
 
                 confirmarventa.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -131,21 +141,18 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
                         }else{
                             progressBar.setVisibility(View.VISIBLE);
                             String Empresa = "";
+                            String usuario  = "";
                             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
                             Empresa = sharedPreferences.getString("Empresa","");
-                            PostVender(recyclerViewModel.getID(),spinner.getSelectedItem().toString(),Empresa,"Android app",Integer.parseInt(cantidad.getText().toString()));
+                            usuario = sharedPreferences.getString("User","");
+                            PostVender(recyclerViewModel.getID(),spinner.getSelectedItem().toString(),Empresa,usuario,Integer.parseInt(cantidad.getText().toString()),contraseñaventa.getText().toString());
+
                         }
                     }
                 });
 
-                progressBar.setVisibility(View.VISIBLE);
-                clientes = new ArrayList<String>();
-                GetClientes();
+;
 
-                mBuilder.setView(view);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
-                dialog.show();
             }
         });
 
@@ -218,24 +225,28 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
 
     }
 
-    public void PostVender(int ID,String Cliente,String Empresa,String user,int cantidad){
+    public void PostVender(int ID,String Cliente,String Empresa,String user,int cantidad,String contra){
         Retrofit retrofit = new  Retrofit.Builder().
         baseUrl("http://gcapi20181127075037.azurewebsites.net")
         .addConverterFactory(GsonConverterFactory.create())
         .build();
         ServicioVender service = retrofit.create(ServicioVender.class);
-        Call<String> call = service.getStringCall(ID,Cliente,Empresa,user,cantidad);
+        Call<String> call = service.getStringCall(ID,Cliente,Empresa,user,cantidad,contra);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(activity.getApplicationContext(),response.body(),Toast.LENGTH_LONG).show();
+                dialog.hide();
+                activity.recreate();
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(activity.getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+                dialog.hide();
+                activity.recreate();
             }
         });
 

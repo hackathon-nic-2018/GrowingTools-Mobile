@@ -11,9 +11,21 @@
     android:descendantFocusability="blocksDescendants"
     tools:context=".LauncherActivity">
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity=""
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/favicon"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        </LinearLayout>
   <ProgressBar
 
       android:visibility="invisible"

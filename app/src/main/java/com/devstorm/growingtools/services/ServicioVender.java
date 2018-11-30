@@ -9,6 +9,6 @@ public interface ServicioVender {
     @POST(API_ROUT)
     Call<String> getStringCall(@Query("ID_inventario") int ID_inventario
     ,@Query("Cliente") String Cliente,@Query("Empresa") String Empresa,@Query("user") String user
-    ,@Query("cantidad") int cantidad);
+    ,@Query("cantidad") int cantidad,@Query("contra") String contra);
 
 }

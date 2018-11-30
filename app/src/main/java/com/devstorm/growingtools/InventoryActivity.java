@@ -44,6 +44,8 @@ public class InventoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Inventario");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_inventory);
         //llamadas al layout
         progressBar = findViewById(R.id.progressinventoryload);

@@ -16,5 +16,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">#FFFF</item>
     </style>
+    <style name="font" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/cardview_light_background</item>
+        <item name="colorPrimary">@color/cardview_light_background</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/cardview_light_background</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
+
+    </style>
 
 </resources>

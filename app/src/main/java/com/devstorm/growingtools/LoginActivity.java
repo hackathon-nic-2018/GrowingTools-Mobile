@@ -42,7 +42,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String loggued = sharedPreferences.getString("User","");
+        if(loggued!="") {
+            puente = new Intent(getApplicationContext(), LauncherActivity.class);
+            startActivity(puente);
+        }
         //Escondiendo la barra de accion
         getSupportActionBar().hide();
 
@@ -56,8 +61,10 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                GetLogin();
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String loggued = sharedPreferences.getString("User","");
+                    progressBar.setVisibility(View.VISIBLE);
+                    GetLogin();
             }
         });
 

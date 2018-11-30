@@ -1,6 +1,10 @@
 package com.devstorm.growingtools;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.devstorm.growingtools.adapterss.SlidingMenuAdapter;
 import com.devstorm.growingtools.models.SlidingMenuModel;
@@ -58,7 +63,14 @@ public class LauncherActivity extends AppCompatActivity {
                         //Vista de inventario
                         puente = new Intent(getApplicationContext(),InventoryActivity.class);
                         startActivity(puente);
+                        break;
                     }
+                    case 1 : {
+                        puente = new Intent(getApplicationContext(),ResultadoActivity.class);
+                        startActivity(puente);
+                        break;
+                    }
+
                 }
             }
         });
@@ -98,6 +110,14 @@ public class LauncherActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.closeSession :{
                        //Aca borro del sharedPreferences los datos guardados
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("Empresa","");
+                        editor.putString("User","");
+                        editor.commit();
+                        Toast.makeText(getApplicationContext(),"Sesion finalizada",Toast.LENGTH_LONG).show();
+                        puente = new Intent(getApplicationContext(),LoginActivity.class);
+                        startActivity(puente);
                     }
                 }
         }
@@ -110,4 +130,11 @@ public class LauncherActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    private void addFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.graficosContainer,fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null)
+                .commit();
+
+    }
 }
